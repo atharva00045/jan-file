@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+ 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <style>
+        body {
+            height: 100vh;
+            background: linear-gradient(to right, #e68282, #6bd379);
+        }
+ 
+        .login-box {
+            max-width: 450px;
+            
+            background-color: rgb(128, 179, 224);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+ 
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+</head>
+ 
+<body>
+ 
+    <div class="container d-flex justify-content-center align-items-center h-100">
+        <div class="login-box">
+            <h3 class="text-center mb-4" style="color: white;">Sign In</h3>
+ <!-- onsubmit="validateForm()" -->
+            <form >
+ 
+                <div class="mb-3">
+                    <label class="form-label" style="color: white;">Name🙂 </label>
+                    <input type="text" id="name" class="form-control" placeholder="Enter your name">
+                    <span class="error" id="nameError"></span>
+                </div>
+ 
+ 
+                <div class="mb-3">
+                    <label class="form-label" style="color: white;">Email ⛓</label>
+                    <input type="email" id="email" class="form-control" placeholder="Enter your email">
+                    <span class="error" id="emailError"></span>
+                </div>
+         
+                  <div class="mb-3">
+                    <label class="form-label" style="color: white;">Education</label>
+                    <input type="text" id="education" class="form-control" placeholder="Enter your education">
+                    <span class="error" id="emailError"></span>
+                </div>
+ 
+                <div class="mb-3">
+                    <label class="form-label" style="color: white;">Password 🔑</label>
+                    <input type="password" id="password" class="form-control" placeholder="Enter your password">
+                    <span class="error" id="passwordError"></span>
+                </div>
+ 
+ 
+                <div class="mb-3">
+                    <label class="form-label" style="color: white;">Mobile Number 📞</label>
+                    <input type="tel" id="mobile" class="form-control" placeholder="Enter your mobile number">
+                    <span class="error" id="mobileError"></span>
+                </div>
+ 
+ 
+                <div class="mb-3 text-end">
+                    <a href="#" class="text-decoration-none">Forgot your password?</a>
+                </div>
+ 
+ 
+                <button type="submit" class="btn btn-primary w-100" onclick="validateForm()">Login</button>
+ 
+ 
+                <p class="text-center mt-3" style="color: rgb(221, 229, 233);">
+                    Don’t have an account?
+                    <a href="#" class="text-decoration-none">Sign up</a>
+                </p>
+            </form>
+        </div>
+    </div>
+ 
+ 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+ 
+ 
+    <script>
+ 
+        let aa = document.querySelector("form");
+ 
+        aa.addEventListener("submit", (e) => {
+            e.preventDefault()
+ 
+ 
+            let isValid = true;
+ 
+ 
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let password = document.getElementById("password").value.trim();
+            let mobile = document.getElementById("mobile").value.trim();
+            let education=document.getElementById("education").value.trim()
+
+
+          let studentInfo={
+            name:name,
+            email:email,
+            password:password,
+            mobile:mobile,
+            education:education
+          }
+            let data=JSON.parse(localStorage.getItem("info"))||[];
+            data.push(studentInfo);
+            localStorage.setItem("info",JSON.stringify(data));
+ 
+            // Clear errors
+            document.getElementById("nameError").innerHTML = "";
+            document.getElementById("emailError").innerHTML = "";
+            document.getElementById("passwordError").innerHTML = "";
+            document.getElementById("mobileError").innerHTML = "";
+ 
+            // Name validation
+            if (name === "") {
+                document.getElementById("nameError").innerHTML = "Name is required";
+                isValid = false;
+            }
+ 
+ 
+            if (email === "") {
+                document.getElementById("emailError").innerHTML = "Email is required";
+                isValid = false;
+            }
+ 
+ 
+            if ( password.length > 6  || password == "Atharva") {
+                document.getElementById("passwordError").innerHTML = "Password must be Correct";
+                isValid = true;
+            }
+ 
+ 
+            if (mobile.length !== 10 || isNaN(mobile)) {
+                document.getElementById("mobileError").innerHTML = "Enter valid 10-digit mobile number";
+                isValid = false;
+            }
+ 
+ 
+ 
+            if (isValid && password == "Atharva") {
+             
+                window.location.href = "loginsuccess.html"
+ 
+ 
+            }
+
+            
+        })
+    </script>
+ 
+</body>
+ 
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login Form</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #a9c9ff, #e6c6ff);
+    }
+
+    .card {
+      width: 380px;
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 32px 28px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .title {
+      text-align: center;
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .tab-switch {
+      display: flex;
+      border: 1px solid #d6d6d6;
+      border-radius: 30px;
+      overflow: hidden;
+      margin-bottom: 28px;
+    }
+
+    .tab {
+      flex: 1;
+      padding: 10px 0;
+      text-align: center;
+      cursor: pointer;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .tab.active {
+      background: linear-gradient(135deg, #003973, #007adf);
+      color: #fff;
+    }
+
+    .input-group {
+      margin-bottom: 16px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid #ddd;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #007adf;
+    }
+
+    .forgot {
+      font-size: 14px;
+      color: #007adf;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 22px;
+    }
+
+    .login-btn {
+      width: 100%;
+      border: none;
+      padding: 14px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #003973, #007adf);
+      color: #fff;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .footer-text {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 15px;
+    }
+
+    .footer-text a {
+      color: #007adf;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="title" id="formTitle">Login Form</div>
+
+    <div class="tab-switch">
+      <div class="tab active" id="loginTab">Login</div>
+      <div class="tab" id="signupTab">Signup</div>
+    </div>
+
+    <div class="input-group hidden" id="nameField">
+      <input type="text" id="name" placeholder="Full Name" />
+    </div>
+
+    <div class="input-group">
+      <input type="email" id="email" placeholder="Email Address" />
+    </div>
+
+    <div class="input-group">
+      <input type="password" id="password" placeholder="Password" />
+    </div>
+
+    <a href="#" class="forgot" id="forgotLink">Forgot password?</a>
+
+    <button class="login-btn" id="submitBtn">Login</button>
+
+    <div class="footer-text" id="footerText">
+      Create an account <a href="#">Signup now</a>
+    </div>
+  </div>
+
+  <script>
+    const loginTab = document.getElementById("loginTab");
+    const signupTab = document.getElementById("signupTab");
+    const formTitle = document.getElementById("formTitle");
+    const submitBtn = document.getElementById("submitBtn");
+    const nameField = document.getElementById("nameField");
+    const forgotLink = document.getElementById("forgotLink");
+
+    loginTab.addEventListener("click", () => {
+      loginTab.classList.add("active");
+      signupTab.classList.remove("active");
+      formTitle.innerText = "Login Form";
+      submitBtn.innerText = "Login";
+      nameField.classList.add("hidden");
+      forgotLink.style.display = "inline-block";
+    });
+
+    signupTab.addEventListener("click", () => {
+      signupTab.classList.add("active");
+      loginTab.classList.remove("active");
+      formTitle.innerText = "Signup Form";
+      submitBtn.innerText = "Signup";
+      nameField.classList.remove("hidden");
+      forgotLink.style.display = "none";
+    });
+
+    submitBtn.addEventListener("click", () => {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      if (email === "" || password === "") {
+        alert("Please fill all required fields");
+        return;
+      }
+
+      if (signupTab.classList.contains("active")) {
+        const name = document.getElementById("name").value;
+        if (name === "") {
+          alert("Please enter your name");
+          return;
+        }
+        alert("Signup successful!");
+      } else {
+        alert("Login successful!");
+      }
+    });
+  </script>
+
+</body>
+</html>

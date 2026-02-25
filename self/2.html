@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #btn {
+            height: 20px;
+            width: 80px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <h1 id="heading">hello javascript</h1>
+
+    <button onclick="on()" id="btn">Click on </button>
+
+
+    <script>
+        let not = true;
+        function on() {
+
+            if (not) {
+                document.getElementById("heading").innerHTML = "ok"
+                not = !not
+            }
+            else {
+                document.getElementById("heading").innerHTML = "hii"
+                not = !not
+            }
+
+        }
+    </script>
+</body>
+
+</html>
